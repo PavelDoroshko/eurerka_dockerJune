@@ -1,22 +1,45 @@
- version: '3.3'
+version: '3.3'
 
- services:
+services:
+
+  discovery:
+    container_name: discovery
+    build: ./discovery
+    image: doroshko:discovery
+    ports:
+      - "8761:8761"
+    environment:
+      - EUREKA_HOST=http://discovery:8761/eureka/
+
   demo2:
     container_name: demo2
     build: ./demo2
     image: demo2
     depends_on:
-    - db
+      - db
     ports:
-    - "8003:8003"
+      - "8003:8003"
+    environment:
+      - EUREKA_HOST=http://discovery:8761/eureka
 
   db:
     hostname: db
     image: postgres:13.4-alpine
     env_file:
-    - database/database.env
+      - database/database.env
     ports:
-    - "5433:5432"
+      - "5433:5432"
     volumes:
-    - ./database/db.sql:/docker-entrypoint-initdb.d/db.sql
-    - ./database/db:/var/lib/postgresql/db/
+      - ./database/db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./database/db:/var/lib/postgresql/db/
+
+  demo3:
+    container_name: demo3
+    build: ./demo3
+    image: demo3
+    depends_on:
+      - discovery
+    ports:
+      - "8004:8004"
+    environment:
+      - EUREKA_HOST=http://discovery:8761/eureka

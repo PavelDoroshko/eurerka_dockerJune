@@ -1,0 +1,17 @@
+server:
+  port: 8004
+  servlet:
+    context-path: /demo3
+spring:
+  application:
+    name: demo3
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_HOST:http://localhost:8761/eureka/}
+  instance:
+    instance-id: demo3-instance
+logging:
+      level:
+        org.springframework:
+             web.filter: ${COMMONS_REQUEST_LOGGING_FILTER:DEBUG}
