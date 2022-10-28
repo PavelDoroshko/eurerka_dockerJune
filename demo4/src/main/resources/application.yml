@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT:8585}
+#  servlet:
+#    context-path: /demo4
+spring:
+  application.name: ${APPLICATION_NAME:spring-security-keycloak}
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+keycloak:
+     auth-server-url: http://localhost:8484/auth
+     realm: PPP
+     resource: pppp
+     public-client: true

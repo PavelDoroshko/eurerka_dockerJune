@@ -16,6 +16,6 @@ public class StarterController {
     @PostMapping("/starter")
     public  String getSignedMessage(@RequestBody Message message){
         LOG.info("метод контроллера стартера" + message.getUserName());
-        return message.getHeader() + "\n\n" + message.getBody() + "\n\n" +message.getUserName();
+        return message.getHeader() + "\n\n" + message.getBody() + "\n\n" + message.getUserName();
     }
 }

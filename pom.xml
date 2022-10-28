@@ -8,6 +8,7 @@
         <module>discovery</module>
         <module>demo3</module>
         <module>grpc-client</module>
+        <module>demo4</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
